@@ -96,14 +96,14 @@ module portesLaterales() {
 module portesFrontales() {
     echo(text = str("Portes Frontales"));
         //portes frontales
-    translate([L-(e+porte_e),0,e+charnier_e]) rotate([0,0,-120]) {
+    translate([L-(2*e+porte_e),0,e+charnier_e]) rotate([0,0,-120]) {
         translate([e,0,0]) difference() {
             planche(e,l/2,H-(2*e+charnier_e));
             translate([-0.1,l/2-50,H-(2*e+charnier_e)-50]) rotate([0,90,0]) cylinder(d=30, h=5.2);
         }
         color("red") translate([0,0,0]) planche(e,cote_l,H-2*e-charnier_e);
     }
-    translate([L-(e+porte_e),l,e+charnier_e]) rotate([0,0,120]) translate([0,-l/2,0])  {
+    translate([L-(2*e+porte_e),l,e+charnier_e]) rotate([0,0,120]) translate([0,-l/2,0])  {
         translate([e,0,0]) difference() {
             planche(e,l/2,H-(2*e+charnier_e));
             translate([-0.1,+50,H-(2*e+charnier_e)-50]) rotate([0,90,0]) cylinder(d=30, h=5.2);
