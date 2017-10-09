@@ -60,6 +60,7 @@ module frame() {
     echo(text = str("  Haut"));
     translate([0,0,H-e]) planche(L,l,e);
     color("red") translate([L-(e+porte_e+charnier_e+cote_l),cote_l,H-2*e]) planche(cote_l-e,l-2*cote_l,e);
+    color("red") translate([e,cote_l,H-2*e]) planche(cote_l-e,l-2*cote_l,e);
     // laterale
     echo(text = str("  Laterale"));
     translate([e,cote_l-e,e]) planche(L-3*e-2*porte_e-charnier_e, e,H-2*e);
@@ -112,22 +113,38 @@ module portesFrontales() {
     }
 }
 
+module etagere() {
+    echo(text = str("Etageres"));
+    color("pink") translate([e,cote_l,e]){
+        translate([0,0,130]) planche(L-3*e-charnier_e-porte_e-20, l-cote_l*2,porte_e);
+        translate([0,170,0]) planche(L-3*e-charnier_e-porte_e-20, porte_e,130);
+        translate([0,l-2*cote_l-blocFer_l-porte_e,0]) planche(L-3*e-charnier_e-porte_e-20, porte_e,130);
+        translate([0,295,130+porte_e]) planche(200, porte_e,H-3*e-130-porte_e);
+    }
+    color("red") translate([e,cote_l,e]){
+        translate([0,0,130+porte_e+25]) planche(200, 295, e);
+        translate([0,0,130+porte_e+2*25+e]) planche(200, 295, e);
+    }
+}
+
 module all() {
     frame();
     portesLaterales();
     portesFrontales();
+    etagere()
     translate([2*e,(cote_l-blocPrise_l)/2,(H-blocPrise_L)/2+e]) blocPrise();
     translate([e+40,cote_l,e]) blocAlim();
-    translate([e+blocAlim_L+40+40,cote_l,e]) rotate([90,0,90]) plaqueAlimAll(150,85,2);
+    translate([e+blocAlim_L+110,cote_l,e]) rotate([90,0,90]) plaqueAlimAll(170,130,5);
     
     translate([e,l-cote_l-blocFer_l,e]) blocFer();
-    translate([e,cote_l,e+ 150]) box();
-    translate([e,cote_l,2*e+ 190]) box();
-    translate([e,cote_l,3*e+ 230]) box();
-    translate([e,cote_l,4*e+ 270]) box();
-    translate([e,cote_l,5*e+ 310]) box();
-    translate([e,cote_l,6*e+ 350]) box();
-    translate([e,cote_l,7*e+ 390]) box();
+    color("yellow") translate([e,cote_l+5,e+ 140]) cube([200,282,21]);
+    color("yellow") translate([e,cote_l+5,2*e+ 140+25]) cube([200,282,21]);
+    //translate([e,cote_l,2*e+ 180]) box();
+    translate([e,cote_l,3*e+ 220]) box();
+    translate([e,cote_l,4*e+ 260]) box();
+    translate([e,cote_l,5*e+ 300]) box();
+    translate([e,cote_l,6*e+ 340]) box();
+    translate([e,cote_l,7*e+ 380]) box();
 }
 
 //frame();
